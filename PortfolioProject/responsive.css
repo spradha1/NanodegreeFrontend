@@ -1,0 +1,46 @@
+@media screen and (max-width: 475px) {
+    .logo {
+        width: 100%;
+    }
+    .name {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 749px) {
+    .single_profile {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .image {
+        width:100%;
+        order: -1;
+        min-height: 104.25px;
+        min-width: 104.25px;
+    }
+
+    .title {
+        width:100%;
+        text-align: center;
+    }
+
+    .description {
+        width:95%;
+        order: 1;
+        font-size:17px;
+    }
+
+    .profile_logo {
+        min-height: 104.25px;
+        min-width: 104.25px;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .main, #header, footer, .profiles {
+        width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
