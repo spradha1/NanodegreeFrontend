@@ -35,12 +35,10 @@ function flip(evt) {
  * @description checks if cards matched, if the game ended & updates game accordingly
  */
 function cardCheck() {   
-    if (openCards[0].firstElementChild.className === openCards[1].firstElementChild.className) {
+    if (openCards[0].firstElementChild.className === openCards[1].firstElementChild.className)
         this.match();
-    }
-    else {
+    else
         this.noMatch();
-    }
     while(openCards.length > 0)
         openCards.pop();
 }
@@ -53,9 +51,8 @@ function match() {
     openCards[0].classList.add('match');
     openCards[1].classList.add('match');
     solvedCards.push(openCards[0], openCards[1]);
-    if (solvedCards.length === 16) {
+    if (solvedCards.length === 16)
         this.congratulate();
-    }
 }
 
 /*
@@ -91,23 +88,44 @@ function refresh() {
  * @description congratulates user after matching all cards
  */
 function congratulate() {
-    location.assign("congratulation.html");
+    gameEnd = true;
+    document.body.innerHTML = "";
+
+    message = document.createElement('p');
+    message.setAttribute('id', 'message');
+
+    let finalStars = 3;
+    if (moves > 19)
+        finalStars = 1;
+    else if (moves > 9)
+        finalStars = 2;
+
+    message.innerHTML = "Congratulations! You won!<br/>" + "Moves: " + moves + ", Stars: " + finalStars + ", Time: " + minutes + "m" + seconds + "s";
+    document.body.appendChild(message);
+
+    const playAgain = document.createElement('div');
+    playAgain.textContent = "Play Again";
+    playAgain.setAttribute('id', 'replay');
+    playAgain.addEventListener('click', refresh);
+    document.body.appendChild(playAgain);
 }
 
 /*
  * @description starts timer as the page loads
  */
 document.addEventListener("DOMContentLoaded", function() {
-    setInterval(timer, 1000);
-    let duration = 0;
+    intervalId = setInterval(timer, 1000);
     function timer() {
-        let minutes = Math.floor(duration / 60);
-        let seconds = duration % 60;
+        minutes = Math.floor(duration / 60);
+        seconds = duration % 60;
         if (minutes < 10)
             minutes = "0" + minutes;
         if (seconds < 10)
             seconds = "0" + seconds;
-        document.querySelector(".time").textContent = minutes + ":" + seconds;
+        if (gameEnd)
+            clearInterval(intervalId);
+        else
+            document.querySelector(".time").textContent = minutes + ":" + seconds;
         duration++;
     }
 });
@@ -125,6 +143,11 @@ const cards = document.querySelectorAll('.card');
 
 let shuffledCards = [];
 let deck = document.querySelector('.deck');
+let gameEnd = false;
+let intervalId = 1;
+let duration = 0;
+let minutes = 0;
+let seconds = 0;
 
 cards.forEach(function(card, index){
     const newCard = document.createElement('li');
@@ -145,14 +168,3 @@ for(let i=0; i<cards.length; i++){
     deck.appendChild(shuffledCards[i]);
     shuffledCards[i].addEventListener('click', flip);
 }
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
