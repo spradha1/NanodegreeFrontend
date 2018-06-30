@@ -14,15 +14,21 @@ function shuffle(array) {
 }
 
 /*
- * @description turns over card that was clicked
+ * @description turns clicked card face up
  * @param the click event
  */
 function flip(evt) {
     const clicked = evt.target;
+
+    // element clicked should not be a card that is already matched or the figure embedded in a card
     if (!clicked.classList.contains('match') && !clicked.classList.contains('fa')) {
         clicked.className = "card open show";
+
+        // open no more than two cards at a time
         if (openCards.length < 2)
             openCards.push(clicked);
+
+        // check for match if he same card was not clicked twice
         if (openCards.length > 1 && openCards[0] !== openCards[1])
             setTimeout(cardCheck, 275);
         else {
@@ -33,7 +39,7 @@ function flip(evt) {
 }
 
 /*
- * @description checks if cards matched, if the game ended & updates game accordingly
+ * @description checks if cards matched & updates game accordingly
  */
 function cardCheck() {   
     if (openCards[0].firstElementChild.className === openCards[1].firstElementChild.className)
@@ -52,6 +58,8 @@ function match() {
     openCards[0].classList.add('match');
     openCards[1].classList.add('match');
     solvedCards.push(openCards[0], openCards[1]);
+
+    // game ends with all 16 cards matched
     if (solvedCards.length === 16)
         this.congratulate();
 }
@@ -63,12 +71,14 @@ function noMatch() {
     this.updateGame();
     openCards[0].className = "card open show nomatch";
     openCards[1].className = "card open show nomatch";
+
+    // temporary placement for non-matching cards to perform animations
     differentCards.push(openCards[0], openCards[1]);
     setTimeout(faceDown, 750);
 }
 
 /*
- * @description removes nomatch class after animation is done
+ * @description removes nomatch class after animation is done, reverts cards to face down
  */
 
 function faceDown() {
@@ -83,6 +93,8 @@ function faceDown() {
 function updateGame() {
     moves += 1;
     counter.textContent = moves;
+
+    // rating drops at 13 & 25 moves
     if (moves == 13 || moves == 25)
         stars.lastElementChild.remove();
 }
@@ -100,8 +112,11 @@ function refresh() {
  */
 function congratulate() {
     gameEnd = true;
+
+    // clear page as game ends
     document.body.innerHTML = "";
 
+    //construct congratulation message
     message = document.createElement('p');
     message.setAttribute('id', 'message');
 
@@ -114,6 +129,7 @@ function congratulate() {
     message.innerHTML = "Congratulations! You won!<br/>" + "Moves: " + moves + ", Stars: " + finalStars + ", Time: " + minutes + "m" + seconds + "s";
     document.body.appendChild(message);
 
+    //construct "Play Again" button
     const playAgain = document.createElement('div');
     playAgain.textContent = "Play Again";
     playAgain.setAttribute('id', 'replay');
@@ -125,7 +141,9 @@ function congratulate() {
  * @description starts timer as the page loads
  */
 document.addEventListener("DOMContentLoaded", function() {
+    //function tick every second
     intervalId = setInterval(timer, 1000);
+
     function timer() {
         minutes = Math.floor(duration / 60);
         seconds = duration % 60;
@@ -133,6 +151,8 @@ document.addEventListener("DOMContentLoaded", function() {
             minutes = "0" + minutes;
         if (seconds < 10)
             seconds = "0" + seconds;
+        
+        // stop timer function once game is over
         if (gameEnd)
             clearInterval(intervalId);
         else
@@ -141,25 +161,20 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-
 // list that holds all of the cards
 const cards = document.querySelectorAll('.card');
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
 
 let shuffledCards = [];
 let deck = document.querySelector('.deck');
 let gameEnd = false;
+
+// for the timer function
 let intervalId = 1;
 let duration = 0;
 let minutes = 0;
 let seconds = 0;
 
+// loop through each card and create its HTML, place in "shuffledCards"
 cards.forEach(function(card, index){
     const newCard = document.createElement('li');
     newCard.className = card.className;
@@ -168,14 +183,20 @@ cards.forEach(function(card, index){
     card.remove();
 });
 
+// shuffle the cards
 shuffledCards = this.shuffle(shuffledCards);
+
+// card storage arrays for various purposes
 let openCards = [];
 let differentCards = [];
 let solvedCards = [];
+
+// game details: moves, stars
 const counter = document.querySelector('.moves');
 const stars = document.querySelector('.stars');
 let moves = 0;
 
+// event listeners for each of the card
 for(let i=0; i<cards.length; i++){
     deck.appendChild(shuffledCards[i]);
     shuffledCards[i].addEventListener('click', flip);
