@@ -1,13 +1,20 @@
 # Memory Game Project
 
-## Table of Contents
+The Memory Game project was completed with the assistance of the starter project provided with the assignment. Mostly,the javascript file was modified to make the game interactive. The following have been added to the starter project to produce the final code.
 
-* [Instructions](#instructions)
+## Functions
 
-## Instructions
+**flip**: runs in response to any card being clicked and turns it over, if not matched or turned face up beforehand  
+**cardCheck**: compares classList of the two cards to determine if it is a match  
+**match**: adds 'match' class to the matching cards, and the cards to storage array 'solvedCards'  
+**nomatch**: adds 'nomatch' class to the non-matching cards, and delays before turning them face down to show the animations  
+**faceDown**: reassigns the cards with only the 'card' class  
+**updateGame**: updates moves counter and star rating  
+**refresh**: reloads page in response to the restart button being clicked  
+**congratulate**: clears out the page and creates congratulation message and a button to reload the game once the user wins  
+**timer**: it runs every second, right after the page is done loading, in order to increment the timer accordingly  
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+## Variables
 
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me)
+**gameEnd**: timer function stops when true  
+**shuffledCards, openCards, solvedCards, diffferentCards**: storage arrays for shuffled set of the cards every time the page loads, cards that are to be checked, cards that are matched & pair of open cards that didn't match
