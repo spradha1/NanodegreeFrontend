@@ -40,10 +40,10 @@ h1 {
 .deck {
     width: 660px;
     min-height: 680px;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    background: linear-gradient(160deg, #0f0f0f 0%, #333030 100%);
     padding: 32px;
-    border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    border-radius: 15px;
+    box-shadow: 15px 15px 20px 0 rgba(54, 159, 245, 0.9);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -54,7 +54,7 @@ h1 {
 .deck .card {
     height: 125px;
     width: 125px;
-    background: #2e3d49;
+    background: #b7d604;
     font-size: 0;
     color: #ffffff;
     border-radius: 8px;
@@ -62,12 +62,17 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    box-shadow: 5px 2px 20px 0 rgba(8, 11, 170, 0.7);
+}
+
+.deck .card:hover {
+    box-shadow: 5px 2px 20px 0 rgba(168, 30, 21, 0.7);
+    background: linear-gradient(75deg, #7df5fd 0%, #e6d00d 100%);
 }
 
 .deck .card.open {
     transform: rotateY(0);
-    background: #02b3e4;
+    background: #01a2ce;
     cursor: default;
 }
 
@@ -77,8 +82,19 @@ h1 {
 
 .deck .card.match {
     cursor: default;
-    background: #02ccba;
+    background: #0e9e01;
     font-size: 33px;
+    animation: 0.25s linear 0s 3 alternate same;
+}
+
+/*
+ * when cards turn out different
+ */
+.deck .card.nomatch {
+    cursor: default;
+    background: #bb033a;
+    font-size: 33px;
+    animation: 0.25s linear 0s 3 alternate different;
 }
 
 /*
@@ -114,7 +130,7 @@ h1 {
 
 #message {
     text-align: center;
-    font-weight: 300px;
+    font-weight: 300;
     margin-top: 200px;
 }
 
@@ -135,4 +151,26 @@ h1 {
     cursor: pointer;
     background: linear-gradient(45deg, #1de403, #139102);
     box-shadow: 3px 3px 10px 3px #242222;
+}
+
+/*
+ * Animation for cards
+ */
+
+@keyframes same {
+    from {
+        transform: translateX(-10px);
+    }
+    to {
+        transform: translateX(10px);
+    }
+}
+
+@keyframes different {
+    from {
+        transform: rotateZ(-40deg);
+    }
+    to {
+        transform: rotateZ(40deg);
+    }
 }

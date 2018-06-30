@@ -21,9 +21,10 @@ function flip(evt) {
     const clicked = evt.target;
     if (!clicked.classList.contains('match') && !clicked.classList.contains('fa')) {
         clicked.className = "card open show";
-        openCards.push(clicked);
+        if (openCards.length < 2)
+            openCards.push(clicked);
         if (openCards.length > 1 && openCards[0] !== openCards[1])
-            cardCheck();
+            setTimeout(cardCheck, 275);
         else {
             while(openCards.length > 1)
                 openCards.pop();
@@ -60,20 +61,30 @@ function match() {
  */
 function noMatch() {
     this.updateGame();
-    openCards[0].className = "card";
-    openCards[1].className = "card";
+    openCards[0].className = "card open show nomatch";
+    openCards[1].className = "card open show nomatch";
+    differentCards.push(openCards[0], openCards[1]);
+    setTimeout(faceDown, 750);
 }
 
+/*
+ * @description removes nomatch class after animation is done
+ */
+
+function faceDown() {
+    differentCards[0].className = "card";
+    differentCards[1].className = "card";
+    while(differentCards.length > 0)
+        differentCards.pop();
+}
 /*
  * @description update details above the game grid
  */
 function updateGame() {
     moves += 1;
     counter.textContent = moves;
-    if (moves == 20)
-        stars.children[1].firstElementChild.className = 'far fa-star';
-    else if (moves == 10)
-        stars.children[2].firstElementChild.className = 'far fa-star';
+    if (moves == 13 || moves == 25)
+        stars.lastElementChild.remove();
 }
 
 /*
@@ -95,9 +106,9 @@ function congratulate() {
     message.setAttribute('id', 'message');
 
     let finalStars = 3;
-    if (moves > 19)
+    if (moves > 24)
         finalStars = 1;
-    else if (moves > 9)
+    else if (moves > 12)
         finalStars = 2;
 
     message.innerHTML = "Congratulations! You won!<br/>" + "Moves: " + moves + ", Stars: " + finalStars + ", Time: " + minutes + "m" + seconds + "s";
@@ -159,6 +170,7 @@ cards.forEach(function(card, index){
 
 shuffledCards = this.shuffle(shuffledCards);
 let openCards = [];
+let differentCards = [];
 let solvedCards = [];
 const counter = document.querySelector('.moves');
 const stars = document.querySelector('.stars');
