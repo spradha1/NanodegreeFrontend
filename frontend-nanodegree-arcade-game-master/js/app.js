@@ -1,39 +1,87 @@
-// Enemies our player must avoid
-var Enemy = function() {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
+// enemy class
+class Enemy {
+    /**
+    * @constructor
+    * @param {number} x - horizontal position of enemy
+    * @param {number} y - vertical position of enemy
+    * @param {number} speed - speed of enemy
+    */
+    constructor(x, y, speed) {
+        this.x = x*100;
+        this.y = Math.floor(Math.random()*3);
+        this.speed = Math.random()*25;
+        // The image/sprite for our enemies 
+        this.sprite = 'images/enemy-bug.png';
+    }
 
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
-    this.sprite = 'images/enemy-bug.png';
-};
+    /**
+    * @description updates the enemy's position
+    * @param {number} dt - time delta between ticks
+    */
+    update(dt) {
+        this.x += this.speed*dt;
+        if (x>600)
+            x = 100;
+    }
 
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
-};
+    /**
+    * @description draw the enemy on the screen, required method for game
+    */
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+}
 
-// Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
+// player class
+class Player {
+    /**
+    * @constructor
+    * @param {number} x - horizontal position of player
+    * @param {number} y - vertical position of player
+    */
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.sprite = 'images/char-pink-girl.png';
+    }
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+    /**
+    * @description updates the player's position
+    */
+    update() {
+        if (this.x - player.x <= 25 && this.y - player.y <= 25) {
+            this.x = 500;
+            this.y = 700;
+        }
+    }
 
+    /**
+    * @description moves player on pressing arrow keys
+    * @param {String} direction - direction for the player to move 
+    */
+    handleInput(direction) {
+        switch (direction) {
+            case 'left':
+                this.x -= 100;
+            case 'up':
+                this.y -= 100;
+            case 'down':
+                this.y += 100;
+            case 'right':
+                this.x += 100;
+        }
+    }
+}
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
+// instantiating all enemies and player
+allEnemies = [];
+for (let i=0; i<3; i++) {
+    allEnemies.push(new Enemy(10, 10, 10));
+}
 
+player = new Player(200, 500);
 
-
-// This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
+// This listens for key presses and sends the keys to the Player.handleInput() method
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
