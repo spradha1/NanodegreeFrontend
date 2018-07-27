@@ -79,7 +79,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
     }
 
     /* This is called by the update function and loops through all of the
@@ -94,6 +94,19 @@ var Engine = (function(global) {
             enemy.update(dt);
         });
         player.update();
+    }
+
+    /* This is called by the update function and resets player position in
+     * case a collision is detected
+     */
+    function checkCollisions() {
+        for (const enemy of allEnemies) {
+            if (Math.abs(enemy.x - player.x) <= 55 && Math.abs(enemy.y - player.y) <= 20) {
+                player.x = 200;
+                player.y = 400;
+                death.innerText = ++deaths;
+            }
+        }
     }
 
     /* This function initially draws the "game level", it will then call
@@ -161,7 +174,8 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
+        gamesWon = 0;
+        deaths = 0;
     }
 
     /* Go ahead and load all of the images we know we're going to need to
@@ -173,7 +187,11 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/char-princess-girl.png',
+        'images/char-cat-girl.png',
+        'images/char-horn-girl.png',
+        'images/char-pink-girl.png'
     ]);
     Resources.onReady(init);
 

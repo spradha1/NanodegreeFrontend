@@ -1,3 +1,47 @@
 body {
+    text-align: center;    
+}
+
+aside {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    height: 45%;
+    width: 15%;
+    border-radius: 10px;
+    box-shadow: 2px 2px 25px #3d3c3c;
+    background: linear-gradient(55deg, #148f8f 10%, #196901 80%);
+    position: fixed;
+    top: 80px;
+    left: 10px;
+    overflow: hidden;
+    margin: auto;
+    padding: 10px 5px;
+}
+
+#options {
+    text-align: left; 
+    list-style-type: none;
+    color: #fefefe;
+}
+
+#options li {
+    height: 45px;
+}
+
+#reset {
+    font-size: 15px;
+    font-weight: 80;
+    margin: 40px 0;
     text-align: center;
+    height: 35px;
+    padding-top: 20px;
+    max-width: 125px;
+    background-color: #1d0241;
+    border-radius: 10px;
+}
+
+#reset:hover {
+    cursor: pointer;
+    background-color: #4d0e9e;
+    border: 1px solid rgb(218, 252, 25);
+    box-shadow: 2px 2px 25px #3d3c3c;
 }

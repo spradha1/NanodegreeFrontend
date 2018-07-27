@@ -7,9 +7,9 @@ class Enemy {
     * @param {number} speed - speed of enemy
     */
     constructor(x, y, speed) {
-        this.x = x*100;
-        this.y = Math.floor(Math.random()*3);
-        this.speed = Math.random()*25;
+        this.x = x*Math.ceil(Math.random()*3);
+        this.y = ((y%3)+1)*85 - 25;
+        this.speed = Math.random()*75 + speed;
         // The image/sprite for our enemies 
         this.sprite = 'images/enemy-bug.png';
     }
@@ -20,12 +20,14 @@ class Enemy {
     */
     update(dt) {
         this.x += this.speed*dt;
-        if (x>600)
-            x = 100;
+        if (this.x>500) {
+            this.x = -100;
+            this.speed = Math.random()*150;
+        }
     }
 
     /**
-    * @description draw the enemy on the screen, required method for game
+    * @description draw the enemy on the screen
     */
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -42,17 +44,31 @@ class Player {
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.sprite = 'images/char-pink-girl.png';
+        this.sprite = 'images/char-princess-girl.png';
     }
 
     /**
-    * @description updates the player's position
+    * @description updates the player's position and keeps it inbound
     */
     update() {
-        if (this.x - player.x <= 25 && this.y - player.y <= 25) {
-            this.x = 500;
-            this.y = 700;
+        if (this.x > 401)
+            this.x -= 100;
+        if (this.x < 0)
+            this.x += 100;
+        if (this.y > 401)
+            this.y -= 82;
+        if (this.y <= -10) {
+            this.x = 200;
+            this.y = 400;
+            games.innerText = ++gamesWon;
         }
+    }       
+
+    /**
+    * @description draw the player on the screen
+    */
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 
     /**
@@ -63,23 +79,36 @@ class Player {
         switch (direction) {
             case 'left':
                 this.x -= 100;
+                break;
             case 'up':
-                this.y -= 100;
+                this.y -= 82;
+                break;
             case 'down':
-                this.y += 100;
+                this.y += 82;
+                break;
             case 'right':
                 this.x += 100;
+                break;
         }
     }
 }
 
-// instantiating all enemies and player
-allEnemies = [];
-for (let i=0; i<3; i++) {
-    allEnemies.push(new Enemy(10, 10, 10));
+function refresh() {
+    location.reload(true);
 }
 
-player = new Player(200, 500);
+// instantiating all enemies and player
+allEnemies = [];
+for (let i=0; i<5; i++) {
+    allEnemies.push(new Enemy(-100, i, 100));
+}
+
+player = new Player(200, 400);
+
+const games = document.querySelector(".games");
+const death = document.querySelector(".deaths");
+const resetButton = document.getElementById("reset");
+resetButton.addEventListener('click', refresh); 
 
 // This listens for key presses and sends the keys to the Player.handleInput() method
 document.addEventListener('keyup', function(e) {
