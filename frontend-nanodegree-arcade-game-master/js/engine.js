@@ -105,6 +105,11 @@ var Engine = (function(global) {
                 player.x = 200;
                 player.y = 400;
                 death.innerText = ++deaths;
+                // implement animation on collision
+                bodyTag.classList.add('loss');
+                setTimeout(function () {
+                    bodyTag.classList.remove('loss');
+                }, 800);
             }
         }
     }
@@ -174,8 +179,7 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        gamesWon = 0;
-        deaths = 0;
+
     }
 
     /* Go ahead and load all of the images we know we're going to need to
@@ -188,10 +192,7 @@ var Engine = (function(global) {
         'images/grass-block.png',
         'images/enemy-bug.png',
         'images/char-boy.png',
-        'images/char-princess-girl.png',
-        'images/char-cat-girl.png',
-        'images/char-horn-girl.png',
-        'images/char-pink-girl.png'
+        'images/char-princess-girl.png'
     ]);
     Resources.onReady(init);
 

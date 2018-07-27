@@ -9,7 +9,7 @@ class Enemy {
     constructor(x, y, speed) {
         this.x = x*Math.ceil(Math.random()*3);
         this.y = ((y%3)+1)*85 - 25;
-        this.speed = Math.random()*75 + speed;
+        this.speed = Math.random()*100 + speed;
         // The image/sprite for our enemies 
         this.sprite = 'images/enemy-bug.png';
     }
@@ -22,7 +22,7 @@ class Enemy {
         this.x += this.speed*dt;
         if (this.x>500) {
             this.x = -100;
-            this.speed = Math.random()*150;
+            this.speed = Math.random()*200;
         }
     }
 
@@ -61,6 +61,12 @@ class Player {
             this.x = 200;
             this.y = 400;
             games.innerText = ++gamesWon;
+
+            // implement animation on winning a game
+            bodyTag.classList.add('win');
+            setTimeout(function () {
+                bodyTag.classList.remove('win');
+            }, 800);
         }
     }       
 
@@ -93,6 +99,9 @@ class Player {
     }
 }
 
+/**
+ * @description reloads page when reset button is clicked
+ */
 function refresh() {
     location.reload(true);
 }
@@ -105,10 +114,14 @@ for (let i=0; i<5; i++) {
 
 player = new Player(200, 400);
 
+// variables for score elements, body element and reset button
 const games = document.querySelector(".games");
 const death = document.querySelector(".deaths");
+let gamesWon = 0;
+let deaths = 0;
 const resetButton = document.getElementById("reset");
 resetButton.addEventListener('click', refresh); 
+const bodyTag = document.querySelector('body');
 
 // This listens for key presses and sends the keys to the Player.handleInput() method
 document.addEventListener('keyup', function(e) {

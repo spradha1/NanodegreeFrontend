@@ -1,7 +1,24 @@
 body {
-    text-align: center;    
+    text-align: center; 
 }
 
+/*
+ * player reaches water
+ */
+body.win {
+    animation: 0.2s linear 0s 4 alternate win; 
+}
+
+/*
+ * player collides with enemy
+ */
+body.loss {
+    animation: 0.2s linear 0s 4 alternate loss;
+}
+
+/*
+ * Styles for information panel on the side
+ */
 aside {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     height: 45%;
@@ -27,6 +44,9 @@ aside {
     height: 45px;
 }
 
+/*
+ * Styles for reset button
+ */
 #reset {
     font-size: 15px;
     font-weight: 80;
@@ -44,4 +64,25 @@ aside {
     background-color: #4d0e9e;
     border: 1px solid rgb(218, 252, 25);
     box-shadow: 2px 2px 25px #3d3c3c;
+}
+
+/*
+ * Animations for player winning & dieing in the game
+ */
+@keyframes win {
+    from {
+        background-color: #32ca04;
+    }
+    to {
+        background-color: #dbf307;
+    }
+}
+
+@keyframes loss {
+    from {
+        background-color: #811401;
+    }
+    to {
+        background-color: #202402;
+    }
 }
