@@ -18,9 +18,11 @@
       <h1><a href="/">Restaurant Reviews</a></h1>
     </nav>
     <!-- Beginning breadcrumb -->
-    <ul id="breadcrumb" >
-      <li><a href="/">Home</a></li>
-    </ul>
+    <nav aria-label="Breadcrumb">
+      <ul id="breadcrumb">
+          <li><a href="/">Home</a></li>
+      </ul>
+    </nav>    
     <!-- End breadcrumb -->
     <!-- End nav -->
   </header>
@@ -29,8 +31,8 @@
   <!-- Beginning main -->
   <main id="maincontent">
     <!-- Beginning map -->
-    <section id="map-container" aria-labelledby="restaurant-map-label">
-      <div id="map"></div>
+    <section id="map-container">
+      <div id="map" role='application' aria-labelledby="restaurant-map-label"></div>
     </section>
     <label id="restaurant-map-label" class="restaurant-info">Google Maps Application</label>
     <!-- End map -->
