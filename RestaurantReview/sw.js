@@ -35,18 +35,18 @@ self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(request).then(response => {
             return response ||
-                fetch(request).then( newResponse => {
+                fetch(event.request).then( newResponse => {
                     return caches.open(cacheId).then( cache => {
                         cache.put(event.request, newResponse.clone());
                         return newResponse;
                     });
                 })
-                .catch(error => {
-                    return new Response('Not connected to the internet: ' + error, {
-                        status: 404,
-                        statusText: 'No internet connection'
-                    });
-                });
+                // .catch(error => {
+                //     return new Response('Not connected to the internet: ' + error, {
+                //         'status': 404,
+                //         'statusText': 'No internet connection'
+                //     });
+                // });
         })
     );
 });

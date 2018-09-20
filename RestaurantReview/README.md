@@ -1,6 +1,6 @@
 # Restaurant Reviews Project
 
-### Instructions to run
+## Instructions to run
 
 1. Download the project and start up a simple HTTP server in the folder to serve up the site files on your local computer.
 
@@ -8,7 +8,7 @@ In a terminal, check the version of Python you have: `python -V`. If you have Py
 
 2. With your server running, visit the site: `http://localhost:8000`
 
-### Features
+## Features
 
 #### Responsiveness
 
@@ -16,4 +16,12 @@ Appropriate media queries are used to render certain number of columns of restau
 
 #### Accessibility
 
+ Aria roles are provided to menus for neighbourhoods and cuisines, the restaurant information, and all the restautant images along with the google maps.
+
 #### Service Worker
+
+Service worker stores all files in the cache, and succesfully revives individual restaurant information if visited before going offline. However, for unvisited restaurant pages, the google map fails to load after going offline.
+
+## Contribution
+
+If you can help with the service worker issue, pull requests are gladly welcolmed.
