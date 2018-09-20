@@ -191,7 +191,7 @@ nav h1 a {
   min-width: 100%;
   overflow: hidden;
 }
-#restaurants-list li h1 {
+#restaurants-list li h2 {
   color: #f18200;
   font-family: Arial,sans-serif;
   font-size: 14pt;
@@ -205,9 +205,9 @@ nav h1 a {
   margin: 0;
   font-size: 11pt;
 }
-#restaurants-list li a {
+#restaurants-list li button {
   background-color: orange;
-  border-bottom: 3px solid #eee;
+  border: 2px solid orange;
   color: #fff;
   display: inline-block;
   font-size: 10pt;
@@ -217,7 +217,13 @@ nav h1 a {
   text-decoration: none;
   text-transform: uppercase;
 }
-
+#restaurants-list li button:hover {
+  background: linear-gradient(20deg, rgb(112, 74, 3), orange);
+  box-shadow: 1px 1px 5px #010614;
+}
+.restaurant-info, .menu-label {
+  display: none;
+}
 /* ====================== Restaurant Details ====================== */
 .inside header {
   top: 0;
@@ -267,7 +273,7 @@ nav h1 a {
   text-align: center;
 }
 #restaurant-img-container {
-  height: 450px;
+  height: 400px;
   overflow: hidden;
 }
 #restaurant-img {

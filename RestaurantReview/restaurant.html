@@ -29,23 +29,26 @@
   <!-- Beginning main -->
   <main id="maincontent">
     <!-- Beginning map -->
-    <section id="map-container">
+    <section id="map-container" aria-labelledby="restaurant-map-label">
       <div id="map"></div>
     </section>
+    <label id="restaurant-map-label" class="restaurant-info">Google Maps Application</label>
     <!-- End map -->
     <!-- Beginning restaurant -->
     <section id="restaurant-container">
-      <h1 id="restaurant-name"></h1>
+      <h2 id="restaurant-name"></h2>
       <div id="restaurant-img-container">
        <img id="restaurant-img">
       </div>
       <p id="restaurant-cuisine"></p>
-      <p id="restaurant-address"></p>
+      <p id="restaurant-address" aria-labelledby="restaurant-address-label"></p>
+      <label id="restaurant-address-label" class="restaurant-info">Address</label>
     </section>
     <!-- end restaurant -->
     <!-- Beginning reviews -->
     <section id="reviews-container">
-      <table id="restaurant-hours"></table>
+      <table id="restaurant-hours" aria-labelledby="restaurant-hours-label"></table>
+      <label id="restaurant-hours-label" class="restaurant-info">Hours of operation</label>
       <ul id="reviews-list"></ul>
     </section>
     <!-- End reviews -->
@@ -59,6 +62,7 @@
   <!-- End footer -->
 
   <!-- Beginning scripts -->
+  <script src="/js/register.js"></script>
   <!-- Database helpers -->
   <script type="text/javascript" src="js/dbhelper.js"></script>
   <!-- Main javascript file -->
