@@ -1,0 +1,65 @@
+[
+    {
+        "name": "East of Italy",
+        "street": "suite a1, 6600 Franklin Ave",
+        "city": "New Orleans",
+        "state": "LA",
+        "zip": 70122,
+        "co": {"lat": 30.027661, "lng": -90.054343},
+        "site": "https://www.eastofitaly.com/"
+    },
+    {
+        "name": "The Sandbar",
+        "street": "2000 Lakeshore Dr",
+        "city": "New Orleans",
+        "state": "LA",
+        "zip": 70148,
+        "co": {"lat": 30.028131, "lng": -90.070628},
+        "site": "https://uno.campusdish.com/LocationsAndMenus/TheCove/TheSandbar"
+    },
+    {
+        "name": "Good Time Sushi",
+        "street": "5315 Elysian Fields Ave",
+        "city": "New Orleans",
+        "state": "LA",
+        "zip": 70122,
+        "co": {"lat": 30.012924, "lng": -90.059704},
+        "site": "https://www.facebook.com/Good-Times-Sushi-108140225894716/"
+    },
+    {
+        "name": "Sassafras Restaurant",
+        "street": "2500 Leon C Simon Dr",
+        "city": "New Orleans",
+        "state": "LA",
+        "zip": 70122,
+        "co": {"lat": 30.026466, "lng": -90.054458},
+        "site": "https://www.sassafrascreolekitchen.com"
+    },
+    {
+        "name": "Homegrown Pizza",
+        "street": "6325 Elysian Fields Ave",
+        "city": "New Orleans",
+        "state": "LA",
+        "zip": 70122,
+        "co": {"lat": 30.023583, "lng": -90.060768},
+        "site": "https://homegrown.pizza/"
+    },
+    {
+        "name": "Yummy Sushi",
+        "street": "6100 Hamburg St Suite A",
+        "city": "New Orleans",
+        "state": "LA",
+        "zip": 70122,
+        "co": {"lat": 30.020248, "lng": -90.076736},
+        "site": "https://www.facebook.com/pages/category/Sushi-Restaurant/Yummy-Sushi-Hibachi-150199111788637/"
+    },
+    {
+        "name": "Papa John's Pizza",
+        "street": "1522 Robert E Lee Blvd",
+        "city": "New Orleans",
+        "state": "LA",
+        "zip": 70122,
+        "co": {"lat": 30.020784, "lng": -90.076844},
+        "site": "https://www.papajohns.com/locations/usa/la/new-orleans/70125-4201/3117-calhoun-st/622"
+    }
+]
