@@ -1,6 +1,12 @@
 # Memory Game Project
 
-The Memory Game project was completed with the assistance of the starter project provided with the assignment. Mostly,the javascript file was modified to make the game interactive. The following have been added to the starter project to produce the final code.
+The Memory Game project was completed with the assistance of the starter project provided with the assignment. Mostly,the javascript file was modified to make the game interactive. The functions and variables added have been mentioned below.
+
+## Installation
+
+Download the project or clone the repository and run
+
+`npm install`
 
 ## Functions
 
